@@ -4,4 +4,8 @@ export const getAllProducts = async () => {
   return await Product.findAll();
 };
 
-export default { getAllProducts };
+export const addProduct = async (data) => {
+  return Product.create(data);
+};
+
+

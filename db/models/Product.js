@@ -12,11 +12,10 @@ const Product = sequelize.define("product", {
   },
   discount: {
     type: DataTypes.FLOAT,
-    allowNull: false,
     defaultValue: 0,
   },
 });
 
-await Product.sync();
+// await Product.sync();
 
 export default Product;
