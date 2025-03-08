@@ -28,3 +28,5 @@ try {
 }
 
 export default sequelize;
+
+// sequelize.sync({ force: true });

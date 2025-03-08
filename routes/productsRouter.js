@@ -1,11 +1,10 @@
-import express from "express";
+import { Router } from "express";
 import * as c from "../controllers/productsControllers.js";
 
-const productsRouter = express.Router();
+const productsRouter = Router();
 
 productsRouter.get("/", c.getAllProducts);
 
-productsRouter.post("/", c.addProduct)
-
+productsRouter.post("/", c.addProduct);
 
 export default productsRouter;

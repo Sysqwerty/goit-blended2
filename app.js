@@ -3,6 +3,7 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import productsRouter from "./routes/productsRouter.js";
+import authRouter from "./routes/authRouter.js";
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(express.json());
 // });
 
 app.use("/api/products", productsRouter);
+app.use("/api/auth", authRouter);
 
 app.use((_, res) => {
   res.status(404).json({ message: "Route not Found" });
@@ -28,4 +30,3 @@ app.use((err, req, res, next) => {
 app.listen(process.env.PORT || 3000, () => {
   console.log("Server is up and running");
 });
-
