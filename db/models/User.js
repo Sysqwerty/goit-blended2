@@ -11,8 +11,11 @@ const User = sequelize.define("user", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  token: {
+    type: DataTypes.STRING,
+  },
 });
 
-// await User.sync();
+// await User.sync({ alter: true });
 
 export default User;

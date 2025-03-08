@@ -10,6 +10,36 @@ export const registerUser = async (body) => {
   }
 
   const hashedPassword = await bcrypt.hash(body.password, 10);
+  const newUser = await User.create({ ...body, password: hashedPassword });
+  return newUser;
+};
 
-  return User.create({ ...body, password: hashedPassword });
+export const verifyUser = async (body) => {
+  const user = await User.findOne({ where: { email: body.email } });
+  if (!user) {
+    return null;
+  }
+  const isPasswordCompare = await bcrypt.compare(body.password, user.password);
+  if (!isPasswordCompare) {
+    return null;
+  }
+  return user;
+};
+
+export const updateUser = async (userId, data) => {
+  const user = await User.findOne({ where: { id: userId } });
+
+  const updatedUser = await user.update(data, {
+    returning: true,
+  });
+
+  return updatedUser;
+};
+
+export const findUserbyId = async (userId) => {
+  const user = await User.findByPk(userId);
+  if (!user) {
+    return null;
+  }
+  return user;
 };
